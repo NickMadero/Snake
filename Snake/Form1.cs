@@ -20,7 +20,7 @@ namespace Snake
             // this should be placed here or it will be out of context. 
             gameTimer.Enabled = true; // this will  make the gameTimer_tick method start.
             gameTimer.Interval = 10;  // this is in 200 milliseconds. this will tick the event for that many millseconds
-
+            direction = Direction.Right; // start the snake by going to the right
 
         }
 
@@ -99,11 +99,11 @@ namespace Snake
                         Application.Exit();
                     }
                     break;
-                    // figure out why it doesnt end as soon as snake x = the right side 
+                 
                 case Direction.Right:
-                    Console.WriteLine(pictureBox1.Right);
+
                     snake.X = snake.X + 1;
-                    if (snake.X ==  pictureBox1.Right)
+                    if (snake.X == this.ClientRectangle.Right - 55 )
                     {
                         Application.Exit();
                     }
