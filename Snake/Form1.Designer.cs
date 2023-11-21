@@ -37,9 +37,9 @@
             // pictureBox1
             // 
             pictureBox1.BackColor = SystemColors.AppWorkspace;
-            pictureBox1.Location = new Point(168, 46);
+            pictureBox1.Location = new Point(62, 12);
             pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(300, 300);
+            pictureBox1.Size = new Size(91, 301);
             pictureBox1.TabIndex = 0;
             pictureBox1.TabStop = false;
             pictureBox1.Paint += gameCanvas;
@@ -52,7 +52,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(784, 361);
             Controls.Add(pictureBox1);
             Name = "Form1";
             Text = "Form1";

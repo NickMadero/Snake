@@ -4,20 +4,23 @@ namespace Snake
 {
     public partial class Form1 : Form
     {
-
+        // enum direction 
         Direction direction = new Direction();
         // creating the snake object
         Snake snake = new Snake();
         //creating the apple object
         Apple apple = new Apple();
+        // creating the setting object
+        Setting Setting = new Setting();
+        
 
         public Form1()
         {
             InitializeComponent();
-            gameTimer.Enabled = true;
-            gameTimer.Interval = 200; 
+            // this should be placed here or it will be out of context. 
+            gameTimer.Enabled = true; // this will  make the gameTimer_tick method start.
+            gameTimer.Interval = 10;  // this is in 200 milliseconds. this will tick the event for that many millseconds
 
-            Setting Setting = new Setting();
 
         }
 
@@ -91,16 +94,25 @@ namespace Snake
             switch (direction)
             {
                 case Direction.Left:
-                    snake.X = snake.X - 10;
+                    snake.X = snake.X - 1;
+                    if (snake.X  == this.ClientRectangle.Left ){
+                        Application.Exit();
+                    }
                     break;
+                    // figure out why it doesnt end as soon as snake x = the right side 
                 case Direction.Right:
-                    snake.X = snake.X + 10;
+                    Console.WriteLine(pictureBox1.Right);
+                    snake.X = snake.X + 1;
+                    if (snake.X ==  pictureBox1.Right)
+                    {
+                        Application.Exit();
+                    }
                     break;
                 case Direction.Up:
-                    snake.Y = snake.Y - 10;
+                    snake.Y = snake.Y - 1;
                     break;
                 case Direction.Down:
-                    snake.Y = snake.Y + 10;
+                    snake.Y = snake.Y + 1;
                     break;
             }
             pictureBox1.Invalidate();
