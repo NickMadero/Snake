@@ -91,6 +91,7 @@ namespace Snake
 
         private void gameTimer_Tick(object sender, EventArgs e)
         {
+            
             switch (direction)
             {
                 case Direction.Left:
@@ -110,9 +111,17 @@ namespace Snake
                     break;
                 case Direction.Up:
                     snake.Y = snake.Y - 1;
+                    if (snake.Y == pictureBox1.Top - 15)
+                    {
+                        Application.Exit();
+                    }
                     break;
                 case Direction.Down:
                     snake.Y = snake.Y + 1;
+                    if (snake.Y == pictureBox1.Height - 15)
+                    {
+                        Application.Exit();
+                    }
                     break;
             }
             pictureBox1.Invalidate();
