@@ -19,7 +19,7 @@ namespace Snake
             InitializeComponent();
             // this should be placed here or it will be out of context. 
             gameTimer.Enabled = true; // this will  make the gameTimer_tick method start.
-            gameTimer.Interval = 10;  // this is in 200 milliseconds. this will tick the event for that many millseconds
+            gameTimer.Interval = 10;  // this is in 10 milliseconds. this will tick the event for that many millseconds
             direction = Direction.Right; // start the snake by going to the right
 
         }
@@ -27,7 +27,7 @@ namespace Snake
         private void gameCanvas(object sender, PaintEventArgs e)
         {
             // have graphics object
-            Graphics canavs = e.Graphics;
+            Graphics canvas = e.Graphics;
 
             if (Setting.GameOver == false)
             {
@@ -39,19 +39,16 @@ namespace Snake
 
 
                 // drawing the apple 
-                RectangleF appleRec = new RectangleF(apple.X, apple.Y, Setting.Width, Setting.Height);
-                canavs.FillEllipse(appleBrush, appleRec);
-
+                //  RectangleF appleRec = new RectangleF(apple.X, apple.Y, Setting.Width, Setting.Height);
+                //   canavs.FillEllipse(appleBrush, appleRec);
+                apple.reDrawAppleOnCanvas(canvas);
 
                 // creating an snake brush
-                Brush snakebrush = new SolidBrush(Color.Black);
-
-
-
+              //  Brush snakebrush = new SolidBrush(Color.Black);
                 // drawing the snake 
-                RectangleF snakeRec = new RectangleF(snake.X, snake.Y, Setting.Width, Setting.Height);
-                canavs.FillRectangle(snakebrush, snakeRec);
-
+                // RectangleF snakeRec = new RectangleF(snake.X, snake.Y, Setting.Width, Setting.Height);
+                // canavs.FillRectangle(snakebrush, snakeRec);
+                snake.RedrawSnakeOnCanvas(canvas);
              
 
             }
@@ -93,9 +90,11 @@ namespace Snake
         {
             
             switch (direction)
+                
             {
                 case Direction.Left:
                     snake.X = snake.X - 1;
+                    snake.MoveSnake(snake.X, snake.Y);
                     if (snake.X  == this.ClientRectangle.Left ){
                         Application.Exit();
                     }
@@ -104,6 +103,7 @@ namespace Snake
                 case Direction.Right:
 
                     snake.X = snake.X + 1;
+                    snake.MoveSnake(snake.X, snake.Y);
                     if (snake.X == this.ClientRectangle.Right - 55 )
                     {
                         Application.Exit();
@@ -111,6 +111,7 @@ namespace Snake
                     break;
                 case Direction.Up:
                     snake.Y = snake.Y - 1;
+                    snake.MoveSnake(snake.X, snake.Y);
                     if (snake.Y == pictureBox1.Top - 15)
                     {
                         Application.Exit();
@@ -118,6 +119,7 @@ namespace Snake
                     break;
                 case Direction.Down:
                     snake.Y = snake.Y + 1;
+                    snake.MoveSnake(snake.X, snake.Y);
                     if (snake.Y == pictureBox1.Height - 15)
                     {
                         Application.Exit();
